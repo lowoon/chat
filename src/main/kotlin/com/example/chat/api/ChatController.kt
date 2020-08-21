@@ -1,19 +1,17 @@
 package com.example.chat.api
 
-import com.example.chat.api.dto.ChatRoom
-import com.example.chat.service.ChatService
-import org.springframework.web.bind.annotation.*
+import com.example.chat.api.dto.ChatMessage
+import org.springframework.messaging.handler.annotation.MessageMapping
+import org.springframework.messaging.simp.SimpMessageSendingOperations
+import org.springframework.stereotype.Controller
 
-@RestController
-@RequestMapping("/chat")
-class ChatController(val chatService: ChatService) {
-    @PostMapping
-    fun createRoom(@RequestParam name: String): ChatRoom {
-        return chatService.createRoom(name)
-    }
-
-    @GetMapping
-    fun findAllRooms(): List<ChatRoom> {
-        return chatService.findAllRooms()
+@Controller
+class ChatController(val messagingTemplate: SimpMessageSendingOperations) {
+    @MessageMapping("/chat/message")
+    fun message(chatMessage: ChatMessage) {
+        if (chatMessage.messageType.isEnter()) {
+            chatMessage.message = "${chatMessage.sender}님이 입장하셨습니다."
+        }
+        messagingTemplate.convertAndSend("/sub/chat/room/${chatMessage.roomId}", chatMessage)
     }
 }
