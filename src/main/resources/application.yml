@@ -1,0 +1,10 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+  mvc:
+    view:
+      suffix: .html
+

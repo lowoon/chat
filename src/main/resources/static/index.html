@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Websocket Chat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="container" id="app">
+    <h2>채팅방 리스트</h2>
+    <div class="input-group">
+        <div class="input-group-prepend">방제목</div>
+        <input class="input-group-text" type="text">
+        <div class="input-group-append">
+            <button class="room-create-btn" type="button">채팅방 개설</button>
+        </div>
+    </div>
+    <ul class="list-group"></ul>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="js/Chat.js"></script>
+</body>
+</html>

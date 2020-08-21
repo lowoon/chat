@@ -21,8 +21,8 @@ class ChatRoomController(val chatRoomRepository: ChatRoomRepository) {
 
     @PostMapping("/rooms")
     @ResponseBody
-    fun createRoom(@RequestParam name: String): ChatRoom {
-        return chatRoomRepository.createChatRoom(name)
+    fun createRoom(@RequestParam roomName: String): ChatRoom {
+        return chatRoomRepository.createChatRoom(roomName)
     }
 
     @GetMapping("/{roomId}")
